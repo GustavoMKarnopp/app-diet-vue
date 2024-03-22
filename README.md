@@ -28,3 +28,10 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+### REPOSITÓRIO DO PROJETO
+https://github.com/GustavoMKarnopp/app-diet-vue
+
+### LAYOUT DO PROJETO
+https://www.figma.com/file/ONALUda1bUhZVAULInltb0/Daily-Diet-%E2%80%A2-Desafio-React-Native-(Community)?type=design&node-id=0-1&mode=design&t=9cTHfI4fjLZwjUE7-0
