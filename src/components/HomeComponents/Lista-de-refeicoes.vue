@@ -46,13 +46,13 @@
   margin: 16px 0; /* Espaçamento vertical antes e depois do divisor */
 }
 .bola-color-green{
-  background-color: greenyellow;
+  background-color: #d1e9ad;
   width: 20px;
   height: 20px;
   border-radius: 100%;
 }
 .bola-color-red{
-  background-color: greenyellow;
+  background-color: #d1e9ad;
   width: 20px;
   height: 20px;
   border-radius: 100%;

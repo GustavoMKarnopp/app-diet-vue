@@ -1,20 +1,19 @@
 <template>
   <!-- POSSO ADICIONAR HOME GLOBAL -->
-  <v-main class="container">
+  <div>
     <template>
-      <div><Headers></Headers></div>
+      <div>
+        <Headers v-if="['Home'].includes(this.$route.name)"></Headers>
+      </div>
     </template>
     <div>
         <router-view/>
     </div>
-  </v-main>
+  </div>
 </template>
 <script>
 export default{
   name: 'Default',
-  data() {
-
-  },
   components: {
     // eslint-disable-next-line import/extensions
     Headers: () => import('./components/Header.vue'),

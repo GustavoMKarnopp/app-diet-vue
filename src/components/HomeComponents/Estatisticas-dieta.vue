@@ -4,7 +4,8 @@
       <div></div>
       <div>
         <h1>90,86%</h1>
-        <span>das refeições dentro da dieta.</span></div>
+        <span>das refeições dentro da dieta.</span>
+      </div>
       <div class="metricas-icon">
         <span width="50" class="mdi mdi-arrow-top-right-thick"></span>
       </div>
@@ -15,9 +16,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 export default{
   name: 'Home',
-  data() {
 
-  },
 
 };
 </script>
@@ -30,7 +29,7 @@ export default{
     flex-direction: row;
 
     justify-content: space-between;
-    background-color: greenyellow;
+    background-color: #d1e9ad;
     padding: 20px;
     border-radius: 25px;
   }

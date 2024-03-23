@@ -21,9 +21,9 @@ export default{
   },
   components: {
 
-    Estatisticas: () => import('./../components/Estatisticas-dieta.vue'),
-    Refeicoes: () => import('./../components/Refeicoes-dieta.vue'),
-    ListaRefeicoes: () => import('./../components/Lista-de-refeicoes.vue'),
+    Estatisticas: () => import('../components/HomeComponents/Estatisticas-dieta.vue'),
+    Refeicoes: () => import('../components/HomeComponents/Refeicoes-dieta.vue'),
+    ListaRefeicoes: () => import('../components/HomeComponents/Lista-de-refeicoes.vue'),
   },
 
 };
