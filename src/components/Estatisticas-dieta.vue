@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="estatisticas-layout">
     <div class="metricas-dietas">
       <div></div>
       <div>
@@ -8,7 +8,6 @@
       <div class="metricas-icon">
         <span width="50" class="mdi mdi-arrow-top-right-thick"></span>
       </div>
-
     </div>
   </div>
 </template>
@@ -23,6 +22,9 @@ export default{
 };
 </script>
 <style>
+  .estatisticas-layout {
+    width: 100%;
+  }
   .metricas-dietas {
     display: flex;
     flex-direction: row;
