@@ -3,6 +3,8 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/first
+import '@mdi/font/css/materialdesignicons.min.css';
 
 Vue.config.productionTip = false;
 
