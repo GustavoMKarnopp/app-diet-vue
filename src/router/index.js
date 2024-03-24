@@ -60,6 +60,24 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/feedback',
+    component: Layout,
+    props: {
+      color: 'transparent',
+      absolute: true,
+    },
+    children: [
+      {
+        name: 'Feedback',
+        path: '',
+        component: () => import('../views/Feedback.vue'),
+        meta: {
+          requiresAuth: false, // Esta nao rota requer autenticação
+        },
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({

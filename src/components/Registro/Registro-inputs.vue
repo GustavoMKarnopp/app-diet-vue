@@ -24,7 +24,7 @@
       </div>
       <div class="question">
         <div class="txt-dentro">
-          <span>Esta dentro da dieta?</span>
+          <strong>Esta dentro da dieta?</strong>
         </div>
         <div class="resp-question">
           <div class="btn-sim">
@@ -56,8 +56,8 @@
 }
 label{
   text-align: justify;
+  font-weight: bold;
 }
-
 
 .nome{
   display: flex;

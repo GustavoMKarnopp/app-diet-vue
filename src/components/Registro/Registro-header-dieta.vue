@@ -22,7 +22,7 @@
   justify-content: space-between;
   flex-direction: row;
 
-  padding: 30px;
+  padding: 15px;
 
 }
 .colorEstatisticasRegister{
