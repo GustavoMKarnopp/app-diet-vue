@@ -36,7 +36,7 @@
           <div class="btn-nao">
             <button class="button-registro-dieta">
               <div class="bola-bolean-red"></div>
-              Não
+              <span>Não</span>
             </button>
           </div>
         </div>
@@ -182,12 +182,14 @@ input[type="submit"] {
   height: 10px;
   border-radius: 50%;
   background-color: #639339;
+  margin: 0 5px;
 }
 .bola-bolean-red{
   width: 10px !important;
   height: 10px;
   border-radius: 50%;
   background-color: #BF3B44;
+  margin: 0 5px;
 }
 .btn-nao{
   padding-left: 5px;

@@ -12,9 +12,12 @@ export default {
 </script>
 
 <style>
-*{
-  margin: 0px;
-  padding: 0px;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 a{
   text-decoration: none;
