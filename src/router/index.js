@@ -78,6 +78,24 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/refeicao',
+    component: Layout,
+    props: {
+      color: 'transparent',
+      absolute: true,
+    },
+    children: [
+      {
+        name: 'Refeicao',
+        path: '',
+        component: () => import('../views/Refeicao.vue'),
+        meta: {
+          requiresAuth: false, // Esta nao rota requer autenticação
+        },
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({
