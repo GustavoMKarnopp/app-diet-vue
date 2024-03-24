@@ -7,7 +7,10 @@
         <span>das refeições dentro da dieta.</span>
       </div>
       <div class="metricas-icon">
-        <span width="50" class="mdi mdi-arrow-top-right-thick"></span>
+        <a @click="$router.push({ name: 'Estatisticas'})">
+        <!-- <a @click="this.router.navigate(['/estatisticas'])"> -->
+          <span width="50" class="mdi mdi-arrow-top-right"></span>
+        </a>
       </div>
     </div>
   </div>
@@ -29,13 +32,18 @@ export default{
     flex-direction: row;
 
     justify-content: space-between;
-    background-color: #d1e9ad;
+    background-color: #E5F0DB;
     padding: 20px;
-    border-radius: 25px;
+    border-radius: 8px;
   }
   .metricas-icon{
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+
+    color: #639339;
+  }
+  .mdi-arrow-top-right::before{
+    font-size: 24px;
   }
 </style>

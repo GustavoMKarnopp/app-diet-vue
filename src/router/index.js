@@ -42,6 +42,24 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/registro',
+    component: Layout,
+    props: {
+      color: 'transparent',
+      absolute: true,
+    },
+    children: [
+      {
+        name: 'Registro',
+        path: '',
+        component: () => import('../views/Registro-dieta.vue'),
+        meta: {
+          requiresAuth: false, // Esta nao rota requer autenticação
+        },
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({

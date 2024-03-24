@@ -1,6 +1,6 @@
 <!-- eslint-disable max-len -->
 <template>
-  <div id="app" :class="['Estatisticas'].includes(this.$route.name) ? 'colorEstatisticas' : 'container'">
+  <div id="app" :class="['Estatisticas','Registro'].includes(this.$route.name) ? 'colorEstatisticas' : 'container'" >
     <router-view/>
   </div>
 </template>
@@ -15,6 +15,10 @@ export default {
 *{
   margin: 0px;
   padding: 0px;
+}
+a{
+  text-decoration: none;
+  cursor: pointer;
 }
 #app {
   font-family: 'Teko';
