@@ -1,6 +1,6 @@
 <!-- eslint-disable max-len -->
 <template>
-  <div id="app" :class="['Estatisticas','Registro'].includes(this.$route.name) ? 'colorEstatisticas' : 'container'" >
+  <div id="app" :class="['Estatisticas','Registro', 'Refeicao'].includes(this.$route.name) ? 'colorEstatisticas' : 'container'" >
     <router-view/>
   </div>
 </template>
@@ -8,6 +8,9 @@
 <script>
 export default {
   name: 'App',
+  components: {
+
+  },
 };
 </script>
 

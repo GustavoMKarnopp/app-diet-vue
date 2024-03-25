@@ -5,6 +5,9 @@
       <div>
         <Headers v-if="['Home'].includes(this.$route.name)"></Headers>
       </div>
+      <div>
+        <ModalExclusao></ModalExclusao>
+      </div>
     </template>
     <div>
         <router-view/>
@@ -17,6 +20,8 @@ export default{
   components: {
     // eslint-disable-next-line import/extensions
     Headers: () => import('./components/Header.vue'),
+    // eslint-disable-next-line import/extensions, import/no-unresolved
+    ModalExclusao: () => import('../components/Modal/Modal-global.vue'),
   },
 };
 </script>
