@@ -7,11 +7,11 @@
             <h3>Deseja realmente excluir o registro da refeição?</h3>
           </div>
           <div class="modal-footer">
-            <button @click="modalGlobalExclusao(false)" class="nao-excluir-ref">
+            <button @click="modalGlobalExclusao(false)" class="nao-excluir-mod">
               Cancelar
             </button>
 
-            <button @click="modalGlobalExclusaoF()" class="excluir-ref">
+            <button @click="modalGlobalExclusaoF()" class="excluir-mod">
               Sim, excluir
             </button>
           </div>
@@ -89,7 +89,7 @@ export default {
   align-items: center;
   justify-content:center;
 }
-.excluir-ref {
+.excluir-mod {
   background-color: #333638; /* Cor de fundo verde */
   color: white; /* Cor do texto */
   padding: 15px; /* Espaçamento interno */
@@ -105,10 +105,10 @@ export default {
   margin: 5px;
 }
 
-.excluir-ref:hover {
+.excluir-mod:hover {
   background-color: #333638; /* Cor de fundo ao passar o mouse */
 }
-.nao-excluir-ref {
+.nao-excluir-mod {
   color: rgb(0, 0, 0); /* Cor do texto */
   padding: 15px; /* Espaçamento interno */
   text-align: center; /* Alinhamento do texto */

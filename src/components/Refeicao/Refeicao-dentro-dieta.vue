@@ -1,13 +1,15 @@
 <!-- eslint-disable max-len -->
 <template>
-  <div class="indice-icon-registro" :class="['Registro'].includes(this.$route.name) ? 'colorEstatisticasRegister' : ''">
-    <div class="arrow-registro">
-      <span class="mdi mdi-arrow-left"></span>
+  <div :class="['Registro'].includes(this.$route.name) ? 'colorEstatisticasRegister' : ''">
+    <div class="indice-icon-registro">
+      <div class="arrow-registro">
+        <span class="mdi mdi-arrow-left"></span>
+      </div>
+      <div>
+        <h3>Nova refeição</h3>
+      </div>
+      <div></div>
     </div>
-    <div>
-      <h3>Nova refeição</h3>
-    </div>
-    <div></div>
   </div>
 </template>
 <style>
@@ -23,6 +25,10 @@
   flex-direction: row;
 
   padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  max-width: 992px;
 
 }
 .colorEstatisticasRegister{

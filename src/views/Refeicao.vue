@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="tela-refeicao">
     <RefeicaoHead></RefeicaoHead>
     <RefeicaoDetalhe></RefeicaoDetalhe>
   </div>
@@ -20,7 +20,6 @@ export default {
 .tela-refeicao{
   width: 100vw; /* 100% da largura da viewport */
   height: 100vh; /* 100% da altura da viewport */
-  position: absolute; /* ou 'fixed' se precisar que fique fixo na tela ao rolar */
   top: 0;
   left: 0;
 }
