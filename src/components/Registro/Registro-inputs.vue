@@ -1,43 +1,45 @@
 <template>
   <div class="registro-dieta-geral">
     <form class="fomulario" action="">
-      <div class="nome">
-          <label for="Nome">Nome</label>
-          <input id="Nome" class="input-register" type="text">
-      </div>
-      <div class="descricao">
-        <div class="txt-dentro">
-          <strong>Descrição</strong>
+      <div>
+        <div class="nome">
+            <label for="Nome">Nome</label>
+            <input id="Nome" class="input-register" type="text">
         </div>
-          <!--eslint-disable-next-line max-len-->
-          <textarea id="descricao" name="descricao" rows="4" cols="50"></textarea>
-      </div>
-      <div class="data-time">
-        <div class="data">
-          <label for="">Data</label>
-          <input class="input-register" type="date">
-        </div>
-        <div class="hora">
-          <label for="">Hora</label>
-          <input class="input-register" type="time">
-        </div>
-      </div>
-      <div class="question">
-        <div class="txt-dentro">
-          <strong>Esta dentro da dieta?</strong>
-        </div>
-        <div class="resp-question">
-          <div class="btn-sim">
-            <button class="button-registro-dieta">
-              <div class="bola-bolean-greeam"></div>
-              <span>Sim</span>
-            </button>
+        <div class="descricao">
+          <div class="txt-dentro">
+            <strong>Descrição</strong>
           </div>
-          <div class="btn-nao">
-            <button class="button-registro-dieta">
-              <div class="bola-bolean-red"></div>
-              <span>Não</span>
-            </button>
+            <!--eslint-disable-next-line max-len-->
+            <textarea id="descricao" name="descricao" rows="4" cols="50"></textarea>
+        </div>
+        <div class="data-time">
+          <div class="data">
+            <label for="">Data</label>
+            <input class="input-register" type="date">
+          </div>
+          <div class="hora">
+            <label for="">Hora</label>
+            <input class="input-register" type="time">
+          </div>
+        </div>
+        <div class="question">
+          <div class="txt-dentro">
+            <strong>Esta dentro da dieta?</strong>
+          </div>
+          <div class="resp-question">
+            <div class="btn-sim">
+              <button class="button-registro-dieta">
+                <div class="bola-bolean-greeam"></div>
+                <span>Sim</span>
+              </button>
+            </div>
+            <div class="btn-nao">
+              <button class="button-registro-dieta">
+                <div class="bola-bolean-red"></div>
+                <span>Não</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -53,6 +55,9 @@
 .fomulario{
   display: flex;
   flex-direction: column;
+  padding: 15px;
+
+  height: 100vh;
 }
 label{
   text-align: justify;
@@ -127,6 +132,18 @@ label{
   border-radius: 15px 15px 0px 0px;
 
   background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px;
+  max-width: 992px;
+
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 15px;
 }
 input {
   background-color: #f0f0f0; /* cor de fundo */

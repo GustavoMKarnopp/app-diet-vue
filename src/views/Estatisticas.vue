@@ -1,10 +1,9 @@
 <template>
   <div>
-    <div>
+    <div class="container-estatisticas">
       <Estatisticas></Estatisticas>
       <EstatisticasGeral></EstatisticasGeral>
     </div>
-    <!-- <div>{{this.$route.name}}</div> -->
   </div>
 </template>
 <script>
@@ -19,7 +18,12 @@ export default{
 };
 </script>
 <style>
-.container{
-  padding: 0px !important;
+.container-estatisticas{
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px;
+  max-width: 992px;
+  width: 100vw;
+  height: 100vh;
 }
 </style>

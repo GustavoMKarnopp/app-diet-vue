@@ -1,5 +1,5 @@
 <template>
-  <div class="tela-register">
+  <div class="tela-register ">
     <HeaderRegistro></HeaderRegistro>
     <InputsRegistro></InputsRegistro>
   </div>
@@ -22,5 +22,11 @@ export default{
   position: absolute; /* ou 'fixed' se precisar que fique fixo na tela ao rolar */
   top: 0;
   left: 0;
+}
+.container-estatisticas{
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px;
+  max-width: 992px;
 }
 </style>

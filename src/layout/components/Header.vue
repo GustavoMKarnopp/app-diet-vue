@@ -1,6 +1,5 @@
 <template>
   <div class="Headers">
-    <!-- <div>DIET ROCKETVUE</div> -->
     <AvataHeader></AvataHeader>
   </div>
 </template>
