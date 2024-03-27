@@ -1,4 +1,3 @@
-<!-- eslint-disable max-len -->
 <template>
   <div :class="['Registro'].includes(this.$route.name) ? 'colorEstatisticasRegister' : ''">
     <div class="indice-icon-registro">

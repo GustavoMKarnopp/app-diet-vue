@@ -7,7 +7,6 @@
 export default {
   name: 'Headers',
   components: {
-    // eslint-disable-next-line import/extensions
     AvataHeader: () => import('../../components/AvatarHeader/Avatar-header.vue'),
   },
 };

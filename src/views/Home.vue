@@ -1,4 +1,3 @@
-<!-- eslint-disable import/extensions -->
 <template>
   <div>
     <div class="flex-diet-desktop">
@@ -12,8 +11,6 @@
   </div>
 </template>
 <script>
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-extraneous-dependencies */
 export default{
   name: 'Home',
   data() {

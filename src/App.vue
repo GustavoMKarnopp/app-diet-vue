@@ -1,4 +1,3 @@
-<!-- eslint-disable max-len -->
 <template>
   <div id="app" :class="['Estatisticas','Registro', 'Refeicao'].includes(this.$route.name) ? 'colorEstatisticas' : 'container'" >
     <router-view/>

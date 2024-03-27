@@ -10,9 +10,7 @@
 export default{
   name: 'Indice',
   components: {
-    // eslint-disable-next-line import/extensions
     Estatisticas: () => import('../components/EstatisticasComponents/Estatisticas-dieta.vue'),
-    // eslint-disable-next-line import/extensions
     EstatisticasGeral: () => import('../components/EstatisticasComponents/Estatisticas-dieta-geral.vue'),
   },
 };

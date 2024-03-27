@@ -8,9 +8,7 @@
 export default {
   name: 'Refeicao',
   components: {
-    // eslint-disable-next-line import/extensions
     RefeicaoHead: () => import('../components/Refeicao/Refeicao-dentro-dieta.vue'),
-    // eslint-disable-next-line import/extensions
     RefeicaoDetalhe: () => import('../components/Refeicao/Refeicao-detalhe.vue'),
   },
 };

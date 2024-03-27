@@ -18,9 +18,7 @@
 export default{
   name: 'Default',
   components: {
-    // eslint-disable-next-line import/extensions
     Headers: () => import('./components/Header.vue'),
-    // eslint-disable-next-line import/extensions, import/no-unresolved
     ModalExclusao: () => import('../components/Modal/Modal-global.vue'),
   },
 };

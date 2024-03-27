@@ -10,7 +10,6 @@
           <div class="txt-dentro">
             <strong>Descrição</strong>
           </div>
-            <!--eslint-disable-next-line max-len-->
             <textarea id="descricao" name="descricao" rows="4" cols="50"></textarea>
         </div>
         <div class="data-time">

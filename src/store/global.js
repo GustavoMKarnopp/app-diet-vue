@@ -1,6 +1,3 @@
-/* eslint-disable space-before-blocks */
-/* eslint-disable no-return-await */
-/* eslint-disable import/no-extraneous-dependencies */
 import axios from 'axios';
 
 const API_DB_BACK_DIET = axios.create({
