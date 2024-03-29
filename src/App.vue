@@ -13,7 +13,7 @@ export default {
   computed: {
     ...mapState({
       modalGlobal: 'modalGlobal',
-      requestUsers: 'requestUsers'
+      requestUsers: 'requestUsers',
     }),
   },
   mounted() {

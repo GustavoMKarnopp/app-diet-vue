@@ -7,12 +7,13 @@
   </div>
 </template>
 <script>
-export default{
+export default {
   name: 'Indice',
   components: {
     Estatisticas: () => import('../components/EstatisticasComponents/Estatisticas-dieta.vue'),
     EstatisticasGeral: () => import('../components/EstatisticasComponents/Estatisticas-dieta-geral.vue'),
   },
+  
 };
 </script>
 <style>

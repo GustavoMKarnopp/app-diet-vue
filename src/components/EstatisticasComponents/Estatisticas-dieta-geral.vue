@@ -20,6 +20,7 @@ export default{
     // eslint-disable-next-line import/extensions
     RefeicoesBalanco: () => import('../../components/EstatisticasComponents/Estatisticas-balanco/Estatistica-balanco-refeicoes.vue'),
   },
+  
 };
 </script>
 <style>

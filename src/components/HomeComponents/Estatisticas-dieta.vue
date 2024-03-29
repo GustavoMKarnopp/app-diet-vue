@@ -13,13 +13,26 @@
         </a>
       </div>
     </div>
+    {{ requestDiet.metricasDietas }}
   </div>
 </template>
 <script>
-/* eslint-disable import/no-extraneous-dependencies */
+import { mapState, mapActions } from 'vuex';
 export default{
   name: 'Home',
-
+  mounted() {
+    this.getMetriacas();
+  },
+  computed: {
+    ...mapState({
+      requestDiet: 'requestDiet'
+    }),
+  },
+  methods: {
+    ...mapActions({
+      getMetriacas: 'requestDiet/getMetriacas',
+    }),
+  }
 
 };
 </script>

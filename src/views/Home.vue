@@ -13,9 +13,6 @@
 <script>
 export default{
   name: 'Home',
-  data() {
-
-  },
   components: {
 
     Estatisticas: () => import('../components/HomeComponents/Estatisticas-dieta.vue'),

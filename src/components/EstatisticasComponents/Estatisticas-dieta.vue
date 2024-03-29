@@ -13,12 +13,9 @@
   </div>
 </template>
 <script>
-/* eslint-disable import/no-extraneous-dependencies */
 export default{
   name: 'IndiceMetrics',
-  data() {
-
-  },
+  
 
 };
 </script>
