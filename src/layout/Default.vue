@@ -7,6 +7,7 @@
       </div>
       <div>
         <ModalExclusao></ModalExclusao>
+        <ModalCadastro></ModalCadastro>
       </div>
     </template>
     <div>
@@ -20,6 +21,7 @@ export default{
   components: {
     Headers: () => import('./components/Header.vue'),
     ModalExclusao: () => import('../components/Modal/Modal-global.vue'),
+    ModalCadastro: () => import('../components/Modal/Modal-cadastro-user.vue'),
   },
 };
 </script>
