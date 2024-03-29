@@ -34,8 +34,7 @@ export default {
             modalGlobalCadastro: 'modalGlobal/modalGlobalCadastro',
         }),
         cadastroUserModal(){
-            this.createUser(this.dadosInputs.formData);
-
+            this.createUser(this.dadosInputs.formData); 
             this.modalGlobalCadastro(false)
 
         }

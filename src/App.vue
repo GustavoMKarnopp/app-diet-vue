@@ -2,8 +2,6 @@
   <div id="app"
     v-if="requestUsers.userExist ? modalGlobalCadastro(true) : modalGlobalCadastro(false)"
     :class="['Estatisticas', 'Registro', 'Refeicao'].includes(this.$route.name) ? 'colorEstatisticas' : 'container'">
-    {{ requestUsers.userExist }}
-    {{ modalGlobal.modalCadastrarUser }}
     <router-view />
   </div>
 </template>
