@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {getCookie as getCookieLocal} from '../../util/cookies';
+import {getCookie as getCookieLocal, deleteCookie as deleteCookiesLocal } from '../../util/cookies';
 const API_URL = process.env.VUE_APP_DEV
-
+let sessionId = getCookieLocal('sessionId')
 const state = {
   userExist : false
 };
@@ -13,34 +13,21 @@ const mutations = {
 };
 
 const actions = {
-  
-  async  createUser({ commit, dispatch }) {
+  async  createUser({dispatch}, dados) {
     try{
-      const response = await axios.post(`${API_URL}/diet`, {
-        first_name:"Gustavo",
-        last_name:"Henrique Karnopp",
-        email:"dev@gmail.com"
-      }, {
-        withCredentials: true
-      });
+      const response = await axios.post(`${API_URL}/diet`, dados, { withCredentials: true });
       if(response){
-        return dispatch('getUser').then((response) => {
-          console.log(response, 'response')
-          // commit('someOtherMutation')
-        })
+        return dispatch('getUser')
       }
     } catch (error) {
       console.log('Error: ' + error)
     } 
   },    
   
-  async  getUser({ commit, dispatch }) {
+  async  getUser({ commit }) {
     try{
-      let sessionId = getCookieLocal('sessionId')
-      console.log(sessionId === null)
       if(sessionId === null){
         commit('USER_EXIST', true)
-        // await dispatch('createUser')
       }else{
         const response = await axios.get(`${API_URL}/diet`, {
           withCredentials: true, // Isso garante que os cookies sejam enviados com a requisição
@@ -48,14 +35,22 @@ const actions = {
             'Authorization': `Bearer ${sessionId}`  
           }
         });
-        if(!response.data){
-          console.log(response, 'data')
-          
-        }
-        
+        console.log(response, 'RESPONSE GERTUSER')
       }
     } catch (error) {
-      console.log('Error: ' + error)
+      if (error.response) {
+        // A requisição foi feita e o servidor respondeu com um status fora do intervalo de 2xx
+        if(sessionId != null && error.response.status == 401){
+          deleteCookiesLocal('sessionId')
+          commit('USER_EXIST', true)
+        }
+      } else if (error.request) {
+        // A requisição foi feita mas não houve resposta
+        console.log(error.request);
+      } else {
+        // Algo aconteceu na configuração da requisição que causou um erro
+        console.log('Error', error.message);
+      }
     } 
   }       
 };

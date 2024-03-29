@@ -14,17 +14,12 @@
                     <label for="email">Email</label>
                     <input v-model="email" id="email" class="input-register" type="email">
                 </div>
-                {{ formsCadastro }}
             </div>
-            <!-- <div class="btn-cad">
-                <button class="cadastrar-refeicao">
-                    Cadastrar refeição
-                </button>
-            </div> -->
         </form>
     </div>
 </template>
 <script>
+import validarEmail from '../../../plugins/filters';
 import { mapActions } from 'vuex';
 export default {
     name: 'RegistrarUsuario',
@@ -55,18 +50,12 @@ export default {
         setDadosCad(field, value) {
             this.formsCadastro[field] = value
             if (this.first_name != '' && this.last_name != '' && this.email != '') {
-                if(this.validarEmail(this.email)){
+                if(validarEmail(this.email)){
                     this.dadosInputs(this.formsCadastro)
+                    
                 }
             }
         },
-
-        validarEmail(email) {
-            // Esta regex cobre muitos casos comuns de e-mails
-            const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
-
-            return regex.test(String(email).toLowerCase());
-        }
     }
 }
 </script>

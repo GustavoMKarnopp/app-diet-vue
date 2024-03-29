@@ -7,9 +7,8 @@
                         <h3>Cadastre seu Usuário</h3>
                     </div>
                     <FormCadastroInputs/>
-                    {{ dadosInputs.formData }}
                     <div class="modal-footer">
-                        <button @click="createUser" class="excluir-mod">
+                        <button @click="cadastroUserModal()" class="excluir-mod">
                             Cadastrar
                         </button>
                     </div>
@@ -24,7 +23,6 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
     computed: {
-        ...mapState(['modalGlobal']),
         ...mapState(['modalGlobal', 'dadosInputs']),
     },
     components:{
@@ -33,13 +31,15 @@ export default {
     methods: {
         ...mapActions({
             createUser: 'requestUsers/createUser',
+            modalGlobalCadastro: 'modalGlobal/modalGlobalCadastro',
         }),
-    },
-    cadastroUserModal(){
-        this.createUser({
+        cadastroUserModal(){
+            this.createUser(this.dadosInputs.formData);
 
-        })
-    }
+            this.modalGlobalCadastro(false)
+
+        }
+    },
 };
 </script>
 <style>
