@@ -5,13 +5,23 @@
       <span>Refeições</span>
     </div>
     <div>
-      <button class="button-nova-refeicao">
+      <button @click="navigateRegistroRefeicao()" class="button-nova-refeicao">
         <span width="50" class="mdi mdi-plus"></span>
         Nova Refeição
       </button>
     </div>
   </div>
 </template>
+<script>
+export default{
+  name: 'RefeicoesLayout',
+  methods: {
+    navigateRegistroRefeicao(){
+      this.$router.push({ name: 'Registro' });
+    }
+  }
+}
+</script>
 <style>
 .refeicoes-layout{
   margin-top: 20px;

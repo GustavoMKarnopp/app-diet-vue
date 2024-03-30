@@ -1,25 +1,25 @@
 <template>
   <div class="registro-dieta-geral">
-    <form class="fomulario" action="">
+    <div class="fomulario" >
       <div>
         <div class="nome">
             <label for="Nome">Nome</label>
-            <input id="Nome" class="input-register" type="text">
+            <input v-model="formCadDiet.title" id="Nome" class="input-register" type="text">
         </div>
         <div class="descricao">
           <div class="txt-dentro">
             <strong>Descrição</strong>
           </div>
-            <textarea id="descricao" name="descricao" rows="4" cols="50"></textarea>
+            <textarea v-model="formCadDiet.description" id="descricao" name="descricao" rows="4" cols="50"></textarea>
         </div>
         <div class="data-time">
           <div class="data">
             <label for="">Data</label>
-            <input class="input-register" type="date">
+            <input v-model="data" class="input-register" type="date">
           </div>
           <div class="hora">
             <label for="">Hora</label>
-            <input class="input-register" type="time">
+            <input v-model="hours" class="input-register" type="time">
           </div>
         </div>
         <div class="question">
@@ -28,13 +28,13 @@
           </div>
           <div class="resp-question">
             <div class="btn-sim">
-              <button class="button-registro-dieta">
+              <button @click="formCadDiet.isOnDiet = true" class="button-registro-dieta">
                 <div class="bola-bolean-greeam"></div>
                 <span>Sim</span>
               </button>
             </div>
             <div class="btn-nao">
-              <button class="button-registro-dieta">
+              <button @click="!formCadDiet.isOnDiet" class="button-registro-dieta">
                 <div class="bola-bolean-red"></div>
                 <span>Não</span>
               </button>
@@ -43,13 +43,46 @@
         </div>
       </div>
       <div class="btn-cad">
-        <button class="cadastrar-refeicao">
+        <button @click="cadastarDiet(formCadDiet)" class="cadastrar-refeicao">
           Cadastrar refeição
         </button>
       </div>
-    </form>
+    </div>
   </div>
 </template>
+<script>
+import {  mapActions } from 'vuex';
+export default{
+  name: 'Registro-inputs',
+  data(){
+    return{
+      data:'',
+      hours:'',
+      formCadDiet:{
+        title:'',
+        description:'',
+        isOnDiet: false,
+        date:''
+      }
+    }
+  },
+
+  methods: {
+    ...mapActions({
+      cadastrarDieta: 'requestDiet/cadastrarDieta',
+    }),
+    cadastarDiet(cadastarDiet){
+
+      let data_hours = new Date(this.data + 'T' + this.hours);
+      this.formCadDiet.date = data_hours.toISOString();
+
+      this.cadastrarDieta(this.formCadDiet)
+
+      console.log(cadastarDiet,'cadastro')
+    }  
+  },
+}
+</script>
 <style>
 .fomulario{
   display: flex;
