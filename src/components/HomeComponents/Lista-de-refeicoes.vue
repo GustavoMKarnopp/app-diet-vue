@@ -1,9 +1,9 @@
 <template>
-  <div >
-    <div  v-for="(refeicoes, data) in objetosAgrupados[0]" :key="data">
+  <div>
+    <div v-for="(refeicoes, data) in objetosAgrupados[0]" :key="data">
       <div class="">
         <!--TEM QUE  AJUSTAR PARA PEGAR A DATA ATUAL-->
-        <h2 class="data-list-dieta">{{ refeicoes ? $moment(data).format('DD.MM.YYYY'): 'Data não listada'}}</h2>
+        <h2 class="data-list-dieta">{{ refeicoes ? $moment(data).format('DD.MM.YYYY') : 'Data não listada' }}</h2>
       </div>
       <div v-for="refeicao in refeicoes" :key="refeicao">
         <div class="background-list">
@@ -13,16 +13,16 @@
           </div>
           <div class="divider-vertical"></div>
           <div>
-            <span>{{refeicao.description}}</span>
+            <span>{{ refeicao.description }}</span>
           </div>
-          <div :class="refeicao.is_on_diet === 1 ? 'bola-color-green' : 'bola-color-red'">{{refeicao.is_on_diet}}</div>
+          <div :class="refeicao.is_on_diet === 1 ? 'bola-color-green' : 'bola-color-red'">{{ refeicao.is_on_diet }}</div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { getItem as getItemLocal, setItemLocalSession as setItemSession} from '../../util/localStorage';
+import { getItem as getItemLocal, setItemLocalSession as setItemSession } from '../../util/localStorage';
 export default {
   name: 'ListDieta',
   data() {
@@ -37,22 +37,18 @@ export default {
   methods: {
     getStorageMels() {
       let mels = getItemLocal('session_diet').melsTotals;
-      
+
       // Verifica se mels é um array antes de prosseguir
       if (Array.isArray(mels.meals)) {
         this.dietas = mels.meals; // Atribui diretamente se já for um array
         this.objetosAgrupados.push(this.agruparPorData(this.dietas));
-        console.log(this.objetosAgrupados, 'objetosAgrupados');
-        // let diet = this.objetosAgrupados[0].dietas
-        // let newDate = new Date(diet.date)
-        // diet.date = newDate
-        // console.log(this.objetosAgrupados[0].dietas, 'this.objetosAgrupados.dietas');
       } else {
         console.error('mels não é um array');
       }
     },
 
     agruparPorData(objetos) {
+
       const grupos = {};
       console.log(objetos, 'dietas');
 
@@ -77,10 +73,11 @@ export default {
 }
 </script>
 <style>
-.data-list-dieta{
+.data-list-dieta {
   text-align: start;
 }
-.background-list{
+
+.background-list {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -90,19 +87,24 @@ export default {
   border-radius: 10px;
   margin: 5px 0 5px 0;
 }
+
 .divider-vertical {
   height: 30px;
   width: 2px;
-  background-color: #e0e0e0; /* Cor do divisor */
-  margin: 16px 0; /* Espaçamento vertical antes e depois do divisor */
+  background-color: #e0e0e0;
+  /* Cor do divisor */
+  margin: 16px 0;
+  /* Espaçamento vertical antes e depois do divisor */
 }
-.bola-color-green{
+
+.bola-color-green {
   background-color: #d1e9ad;
   width: 20px;
   height: 20px;
   border-radius: 100%;
 }
-.bola-color-red{
+
+.bola-color-red {
   background-color: #F3BABD;
   width: 20px;
   height: 20px;

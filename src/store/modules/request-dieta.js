@@ -1,6 +1,12 @@
 import axios from 'axios';
-import { getCookie as getCookieLocal, deleteCookie as deleteCookiesLocal } from '../../util/cookies';
-import { setItem as setItemLocal, setItemLocalSession as setItemSession} from '../../util/localStorage';
+import {
+  getCookie as getCookieLocal,
+  deleteCookie as deleteCookiesLocal
+} from '../../util/cookies';
+import {
+  setItem as setItemLocal,
+  setItemLocalSession as setItemSession
+} from '../../util/localStorage';
 import $router from "@/router";
 
 const API_URL = process.env.VUE_APP_DEV
@@ -39,7 +45,9 @@ const actions = {
         console.log(response);
         commit('METRICAS_DIETA', response.data)
         //Seta o user no localstorage
-        setItemSession('session_diet', { melsMetricas: response.data })
+        setItemSession('session_diet', {
+          melsMetricas: response.data
+        })
 
       }
     } catch (error) {
@@ -63,7 +71,9 @@ const actions = {
       }
     }
   },
-  async cadastrarDieta({ dispatch }, dados) {
+  async cadastrarDieta({
+    dispatch
+  }, dados) {
     try {
 
       //Se sessionId for null abre o modal
@@ -77,7 +87,9 @@ const actions = {
           withCredentials: true
         });
         if (response) {
-          $router.push({name: 'Home'})
+          $router.push({
+            name: 'Home'
+          })
           return dispatch('getListTotalDietas')
         }
 
@@ -122,9 +134,11 @@ const actions = {
             'Authorization': `Bearer ${sessionId}`
           }
         });
-        
+
         // commit('METRICAS_DIETA', response)
-        setItemSession('session_diet', { melsTotals: response.data })
+        setItemSession('session_diet', {
+          melsTotals: response.data
+        })
 
       }
     } catch (error) {
