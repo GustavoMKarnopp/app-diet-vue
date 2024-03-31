@@ -18,11 +18,13 @@ export default {
   },
   mounted() {
     this.getUser();
+    this.getListTotalDietas();
   },
   methods: {
     ...mapActions({
         createUser: 'requestUsers/createUser',
         getUser: 'requestUsers/getUser',
+        getListTotalDietas: 'requestDiet/getListTotalDietas',
         modalGlobalCadastro: 'modalGlobal/modalGlobalCadastro',
     }),
   }
@@ -36,7 +38,7 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden;*/
 }
 
 a {

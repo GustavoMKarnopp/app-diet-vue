@@ -13,7 +13,7 @@
         </a>
       </div>
     </div>
-    {{ requestDiet.metricasDietas }}
+    <!-- {{ requestDiet.metricasDietas }} -->
   </div>
 </template>
 <script>
