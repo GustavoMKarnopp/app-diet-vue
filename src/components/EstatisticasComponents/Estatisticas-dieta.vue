@@ -5,7 +5,7 @@
         <span class="mdi mdi-arrow-left"></span>
       </div>
       <div>
-        <h1>90,86%</h1>
+        <h1>{{ metricasDietEstatisticPocento }}%</h1>
         <span>das refeições dentro da dieta.</span>
       </div>
       <div></div>
@@ -13,10 +13,26 @@
   </div>
 </template>
 <script>
+import {
+  getItem as getItemLocal
+} from '../../util/localStorage';
 export default{
   name: 'IndiceMetrics',
-  
-
+  data(){
+    return{
+      metricasDietEstatisticPocento : '00',
+    }
+  },
+  mounted(){
+    this.getMetrixEstatistic()
+  },
+  methods:{
+    getMetrixEstatistic(){
+      let metricasDietEstatistic = getItemLocal('session_diet').melsMetricas;
+      let porcent = (metricasDietEstatistic.totalDietClean/metricasDietEstatistic.totalMels)*100
+      this.metricasDietEstatisticPocento = porcent.toFixed(2)
+    }
+  }
 };
 </script>
 <style>

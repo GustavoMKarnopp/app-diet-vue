@@ -52,7 +52,6 @@ export default {
     agruparPorData(objetos) {
 
       const grupos = {};
-      console.log(objetos, 'dietas');
 
       // Corrige o nome do método para forEach
       objetos.forEach(obj => {

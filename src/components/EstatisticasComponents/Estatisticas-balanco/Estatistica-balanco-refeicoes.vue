@@ -2,18 +2,34 @@
   <div class="balanco">
     <div class="background-sequencia-balanco-dentro">
       <div class="dados-sequencia-balanco">
-        <h1>99</h1>
+        <h1>{{refeicoesDentro}}</h1>
         <span>refeições dentro da dieta.</span>
       </div>
     </div>
     <div class="background-sequencia-balanco-fora">
       <div class="dados-sequencia-balanco">
-        <h1>10</h1>
+        <h1>{{refeicoesFora}}</h1>
         <span>refeições fora da dieta.</span>
       </div>
     </div>
   </div>
 </template>
+<script>
+export default{
+  name: 'MelhorFreq',
+  props: {
+    // Define a prop 'name'
+    refeicoesDentro: {
+      type: String,
+      required: true
+    },
+    refeicoesFora: {
+      type: String,
+      required: true
+    }
+  }
+}
+</script>
 <style>
 .balanco{
   display: flex;

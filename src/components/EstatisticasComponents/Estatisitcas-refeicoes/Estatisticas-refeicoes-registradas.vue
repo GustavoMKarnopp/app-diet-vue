@@ -2,12 +2,24 @@
   <div>
     <div class="background-sequencia">
       <div class="dados-sequencia">
-        <h1>109</h1>
+        <h1>{{refeicoesRegist}}</h1>
         <span>refeições registradas.</span>
       </div>
     </div>
   </div>
 </template>
+<script>
+export default{
+  name: 'MelhorFreq',
+  props: {
+    // Define a prop 'name'
+    refeicoesRegist: {
+      type: String,
+      required: true
+    }
+  }
+}
+</script>
 <style>
 .background-sequencia{
   background-color: #EFF0F0;

@@ -3,24 +3,36 @@
     <div>
       <strong>Estatisticas gerais</strong>
     </div>
-    <MelhorFrequencia></MelhorFrequencia>
-    <RefeicoesRegistradas></RefeicoesRegistradas>
-    <RefeicoesBalanco></RefeicoesBalanco>
+    <MelhorFrequencia :freqClea="dadosMetricas.dietClean"></MelhorFrequencia>
+    <RefeicoesRegistradas :refeicoesRegist="dadosMetricas.totalMels"></RefeicoesRegistradas>
+    <RefeicoesBalanco :refeicoesDentro="dadosMetricas.totalDietClean" :refeicoesFora="dadosMetricas.totalDietDirty"></RefeicoesBalanco>
   </div>
 </template>
 <script>
-/* eslint-disable import/no-extraneous-dependencies */
+import {
+  getItem as getItemLocal
+} from '../../util/localStorage';
 export default{
   name: 'IndiceMetrics',
+  data(){
+    return{
+      dadosMetricas: ''
+    }
+  },
   components: {
-    // eslint-disable-next-line import/extensions
     MelhorFrequencia: () => import('../../components/EstatisticasComponents/Estatistica-melhor-frequencia/Estatistica-melhor-freq.vue'),
-    // eslint-disable-next-line import/extensions
     RefeicoesRegistradas: () => import('../../components/EstatisticasComponents/Estatisitcas-refeicoes/Estatisticas-refeicoes-registradas.vue'),
-    // eslint-disable-next-line import/extensions
     RefeicoesBalanco: () => import('../../components/EstatisticasComponents/Estatisticas-balanco/Estatistica-balanco-refeicoes.vue'),
   },
-  
+  mounted(){
+    this.getMetrix()
+  },
+  methods:{
+    getMetrix(){
+      let metricasDiet = getItemLocal('session_diet').melsMetricas;
+      this.dadosMetricas = metricasDiet
+    }
+  }
 };
 </script>
 <style>
