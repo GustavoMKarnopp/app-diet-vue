@@ -7,15 +7,17 @@
       </div>
       <div v-for="refeicao in refeicoes" :key="refeicao">
         <div class="background-list">
-          <div>
+          <div style="width: 100%;">
             <!-- <strong>{{ new Date(refeicao.date) }}</strong> -->
             <strong>{{ $moment(refeicao.date).format('h:mm') }}</strong>
           </div>
           <div class="divider-vertical"></div>
-          <div>
+          <div style="width: 100%;">
             <span>{{ refeicao.description }}</span>
           </div>
-          <div :class="refeicao.is_on_diet === 1 ? 'bola-color-green' : 'bola-color-red'">{{ refeicao.is_on_diet }}</div>
+          <div style="width: 100%; display:flex; align-items: center; justify-content: center;" >
+            <div :class="refeicao.is_on_diet === 1 ? 'bola-color-green' : 'bola-color-red'"></div>
+          </div>
         </div>
       </div>
     </div>
