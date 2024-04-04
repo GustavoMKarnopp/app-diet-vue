@@ -78,7 +78,7 @@ const routes = [
     ],
   },
   {
-    path: '/refeicao',
+    path: '/refeicao/:id',
     component: Layout,
     props: {
       color: 'transparent',

@@ -6,19 +6,21 @@
         <h2 class="data-list-dieta">{{ refeicoes ? $moment(data).format('DD.MM.YYYY') : 'Data não listada' }}</h2>
       </div>
       <div v-for="refeicao in refeicoes" :key="refeicao">
-        <div class="background-list">
-          <div style="width: 100%;">
-            <!-- <strong>{{ new Date(refeicao.date) }}</strong> -->
-            <strong>{{ $moment(refeicao.date).format('h:mm') }}</strong>
+        <a @click="pegaId(refeicao)">
+          <div class="background-list">
+            <div style="width: 100%;">
+              <!-- <strong>{{ new Date(refeicao.date) }}</strong> -->
+              <strong>{{ $moment(refeicao.date).format('h:mm') }}</strong>
+            </div>
+            <div class="divider-vertical"></div>
+            <div style="width: 100%;">
+              <span>{{ refeicao.description }}</span>
+            </div>
+            <div style="width: 100%; display:flex; align-items: center; justify-content: center;" >
+              <div :class="refeicao.is_on_diet === 1 ? 'bola-color-green' : 'bola-color-red'"></div>
+            </div>
           </div>
-          <div class="divider-vertical"></div>
-          <div style="width: 100%;">
-            <span>{{ refeicao.description }}</span>
-          </div>
-          <div style="width: 100%; display:flex; align-items: center; justify-content: center;" >
-            <div :class="refeicao.is_on_diet === 1 ? 'bola-color-green' : 'bola-color-red'"></div>
-          </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -42,7 +44,12 @@ export default {
   methods: {
     ...mapActions({
       getListTotalDietas: 'requestDiet/getListTotalDietas',
+      setRouteParams: 'requestDiet/setRouteParams',
     }),
+    pegaId(data){
+      this.setRouteParams({data})
+      this.$router.push({ name: 'Refeicao', params: { id: data.id }})
+    }
   }
 }
 </script>

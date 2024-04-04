@@ -1,22 +1,23 @@
 <template>
   <div class="refeicao-geral">
-    <div>
+    <div v-for="(value, key, index) in requestDiet_userParamsData" :key="index">
       <div class="dado-alimento">
         <h3>Sanduíche</h3>
         <div style="text-align: start;">
-          <span>Sanduíche de pão integral com atum e salada de alface e tomate.</span>
+          <span>{{value.description}}</span>
         </div>
       </div>
       <div class="dthr">
         <h3>Data e hora</h3>
         <div>
-          12/08/2022 às 16:00
+          {{new Date(value.date).toLocaleString()}}
         </div>
       </div>
       <div class="btnbola">
         <div class="bolinha">
-          <div class="bola-bolean-red"></div>
-          <small>dentro da dieta</small>
+          <div :class="value.is_on_diet == 1 ? 'bola-bolean-green' : 'bola-bolean-red'"></div>
+          <small v-if="value.is_on_diet == 1">dentro da dieta</small>
+          <small v-else>fora da dieta</small>
         </div>
       </div>
 
@@ -40,27 +41,43 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'RefeicaoDetalhe',
+  props:{
+    requestDiet_userParamsData: {
+      type: Object,
+      required: true
+    }
+  },
   computed: {
-    ...mapState(['modalGlobal']),
+    ...mapState({
+      modalGlobal: 'modalGlobal',
+    }),
   },
   methods: {
     ...mapActions({
       modalGlobalExclusao: 'modalGlobal/modalGlobalExclusao',
+      deletarDieta: 'requestDiet/deletarDieta',
     }),
-
     modalGlobalExclusaoF() {
-      return this.modalGlobalExclusao(true);
+      this.modalGlobalExclusao(true);
+      return 
     },
   },
 };
 
 </script>
 <style>
-.bola-bolean-red{
+.bola-bolean-green{
   width: 10px !important;
   height: 10px;
   border-radius: 50%;
   background-color: #639339;
+  margin: 0 5px;
+}
+.bola-bolean-red{
+  width: 10px !important;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #BF3B44;
   margin: 0 5px;
 }
 .refeicao-geral {
