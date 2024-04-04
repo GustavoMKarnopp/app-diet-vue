@@ -40,14 +40,12 @@ export default{
 .background-sequencia-balanco-dentro{
   background-color: #E5F0DB;
   border-radius: 10px;
-  padding: 20px;
   margin: 10px;
   width: 100%
 }
 .background-sequencia-balanco-fora{
   background-color: #F4E6E7;
   border-radius: 10px;
-  padding: 20px;
   margin: 10px;
   width: 100%
 }

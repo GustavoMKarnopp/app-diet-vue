@@ -1,7 +1,7 @@
 <template>
   <div class="estatisticas-layout">
-    <div class="indice-dietas">
-      <div class="indice-icon" v-if="$route.name == 'Estatisticas'">
+    <div :class="requestDiet.metricasDietas.porcentagemMetricas <= 60 ? 'indice-dietas-red' : 'indice-dietas-green'">
+      <div :class="requestDiet.metricasDietas.porcentagemMetricas <= 60 ? 'indice-icon-red' : 'indice-icon-green'" v-if="$route.name == 'Estatisticas'">
         <a @click="$router.go(-1)">
           <span class="mdi mdi-arrow-left"></span>
         </a>
@@ -46,18 +46,31 @@ export default{
   .estatisticas-layout {
     width: 100%;
   }
-  .indice-dietas {
+  .indice-dietas-green {
     display: flex;
     flex-direction: row;
-
+    background-color: #E5F0DB;
     justify-content: space-between;
     padding: 50px;
   }
-  .indice-icon{
+  .indice-dietas-red {
+    display: flex;
+    flex-direction: row;
+    background-color: #F4E6E7;
+    justify-content: space-between;
+    padding: 50px;
+  }
+  .indice-icon-green{
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     color: #639339;
+  }
+  .indice-icon-red{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: #BF3B44;
   }
   .mdi-arrow-left::before{
     font-size: 24px !important;

@@ -1,6 +1,6 @@
 <template>
   <div class="estatisticas-layout">
-    <div class="metricas-dietas">
+    <div :class="requestDiet.metricasDietas.porcentagemMetricas <= 60 ? 'metricas-dietas-red' : 'metricas-dietas-green'">
       <div></div>
       <div v-if="requestDiet">
         <h1>{{requestDiet.metricasDietas.porcentagemMetricas}}%</h1>
@@ -9,7 +9,7 @@
       <div v-else>
         <span>Cadastre Refeições!</span>
       </div>
-      <div class="metricas-icon">
+      <div :class="requestDiet.metricasDietas.porcentagemMetricas <= 60 ? 'metricas-icon-red' : 'metricas-icon-gren'" >
         <a @click="$router.push({ name: 'Estatisticas'})">
           <span width="50" class="mdi mdi-arrow-top-right"></span>
         </a>
@@ -49,7 +49,7 @@ export default{
   .estatisticas-layout {
     width: 100%;
   }
-  .metricas-dietas {
+  .metricas-dietas-green {
     display: flex;
     flex-direction: row;
 
@@ -58,12 +58,28 @@ export default{
     padding: 20px;
     border-radius: 8px;
   }
-  .metricas-icon{
+  .metricas-dietas-red {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    background-color: #F4E6E7;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  .metricas-icon-gren{
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
 
     color: #639339;
+  }
+  .metricas-icon-red{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    color: #BF3B44;
   }
   .mdi-arrow-top-right::before{
     font-size: 24px;

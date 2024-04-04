@@ -1,7 +1,7 @@
 <template>
   <div id="app"
     v-if="requestUsers.userExist ? modalGlobalCadastro(true) : modalGlobalCadastro(false)"
-    :class="['Estatisticas', 'Registro', 'Refeicao'].includes(this.$route.name) ? 'colorEstatisticas' : 'container'">
+    :class="['Estatisticas', 'Registro', 'Refeicao'].includes(this.$route.name) ? requestDiet.metricasDietas.porcentagemMetricas <= 60 ? 'colorEstatisticas-red' : 'colorEstatisticas-green' : 'container'" >
     <router-view />
   </div>
 </template>
@@ -14,6 +14,7 @@ export default {
     ...mapState({
       modalGlobal: 'modalGlobal',
       requestUsers: 'requestUsers',
+      requestDiet: 'requestDiet'
     }),
   },
   mounted() {
@@ -40,7 +41,10 @@ body {
   height: 100%;
   /* overflow: hidden;*/
 }
-
+h1{
+  margin: 0px;
+  padding: 0px;
+}
 a {
   text-decoration: none;
   cursor: pointer;
@@ -62,7 +66,10 @@ a {
   max-width: 992px;
 }
 
-.colorEstatisticas {
+.colorEstatisticas-green {
   background-color: #E5F0DB;
+}
+.colorEstatisticas-red {
+  background-color: #F4E6E7;
 }
 </style>
