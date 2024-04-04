@@ -7,7 +7,7 @@
         </a>
       </div>
       <div>
-        <h1>{{ metricasDietEstatisticPocento }}%</h1>
+        <h1>{{ requestDiet.metricasDietas.porcentagemMetricas }}%</h1>
         <span>das refeições dentro da dieta.</span>
       </div>
       <div></div>
@@ -15,35 +15,31 @@
   </div>
 </template>
 <script>
-import { getItem as getItemLocal } from '../../util/localStorage';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 export default{
-  name: 'IndiceMetrics',
+  name: 'Home',
   data(){
     return{
       metricasDietEstatisticPocento : '00',
-      totalMelsWatch: getItemLocal('session_diet').melsMetricas
     }
-  },
-  mounted(){
-    this.getMetrixEstatistic()
-    console.log(this.totalMelsWatch,'totoal')
   },
   watch:{
     
   },
+  mounted() {
+    this.getMetriacas();
+  },
   computed: {
     ...mapState({
-        requestDiet: 'requestDiet',
+      requestDiet: 'requestDiet'
     }),
   },
-  methods:{
-    getMetrixEstatistic(){
-      // let metricasDietEstatistic = getItemLocal('session_diet').melsMetricas;
-      let porcent = (this.totalMelsWatch.totalDietClean/this.totalMelsWatch.totalMels)*100
-      this.metricasDietEstatisticPocento = porcent.toFixed(2)
-    }
+  methods: {
+    ...mapActions({
+      getMetriacas: 'requestDiet/getMetriacas',
+    }),
   }
+
 };
 </script>
 <style>

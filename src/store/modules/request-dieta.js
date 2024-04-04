@@ -5,20 +5,37 @@ import {
 } from '../../util/cookies';
 import {
   setItem as setItemLocal,
-  setItemLocalSession as setItemSession
+  getItem as getItemLocal,
+  setItemLocalSession as setItemSessionLocal
 } from '../../util/localStorage';
 import $router from "@/router";
 
 const API_URL = process.env.VUE_APP_DEV
 let sessionId = getCookieLocal('sessionId')
 const state = {
-  metricasDietas: [],
+  metricasDietas: {
+      dietClean : '',
+      totalDietClean : '',
+      totalDietDirty : '',
+      totalMels : '',
+      porcentagemMetricas : ''
+  },
   storageUpdate: false
 };
 
 const mutations = {
   METRICAS_DIETA(state, payload) {
-    state.metricasDietas.push(payload);
+    let metricasDietEstatisticPocento
+    let metrics = getItemLocal('session_diet').melsMetricas
+
+    let porcent = (metrics.totalDietClean/metrics.totalMels)*100
+    metricasDietEstatisticPocento = porcent.toFixed(2)
+
+    state.metricasDietas.dietClean = metrics.dietClean;
+    state.metricasDietas.totalDietClean = metrics.totalDietClean;
+    state.metricasDietas.totalDietDirty = metrics.totalDietDirty;
+    state.metricasDietas.totalMels = metrics.totalMels;
+    state.metricasDietas.porcentagemMetricas = metricasDietEstatisticPocento;
   },
 
   ATUALIZA_STORERAGE(state, payload){
@@ -51,12 +68,9 @@ const actions = {
             'Authorization': `Bearer ${sessionId}`
           }
         });
-        console.log(response);
-        commit('METRICAS_DIETA', response.data)
         //Seta o user no localstorage
-        setItemSession('session_diet', {
-          melsMetricas: response.data
-        })
+        setItemSessionLocal('session_diet', { melsMetricas: response.data })
+        commit('METRICAS_DIETA', true)
 
       }
     } catch (error) {
@@ -143,8 +157,8 @@ const actions = {
             'Authorization': `Bearer ${sessionId}`
           }
         });
-        if(response && response.data && response.data.length > 0){
-          setItemSession('session_diet', { melsTotals: response.data })
+        if(response && response.data){
+          setItemSessionLocal('session_diet', { melsTotals: response.data })
           commit('ATUALIZA_STORERAGE', true)
         }
 

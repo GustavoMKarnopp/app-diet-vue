@@ -3,7 +3,7 @@
     <div class="metricas-dietas">
       <div></div>
       <div>
-        <h1>{{metricasDietEstatisticPocento}}%</h1>
+        <h1>{{requestDiet.metricasDietas.porcentagemMetricas}}%</h1>
         <span>das refeições dentro da dieta.</span>
       </div>
       <div class="metricas-icon">
@@ -15,9 +15,6 @@
   </div>
 </template>
 <script>
-import {
-  getItem as getItemLocal
-} from '../../util/localStorage';
 import { mapState, mapActions } from 'vuex';
 export default{
   name: 'Home',
@@ -31,7 +28,6 @@ export default{
   },
   mounted() {
     this.getMetriacas();
-    this.getMetrixEstatistic()
   },
   computed: {
     ...mapState({
@@ -42,11 +38,6 @@ export default{
     ...mapActions({
       getMetriacas: 'requestDiet/getMetriacas',
     }),
-    getMetrixEstatistic(){
-      let metricasDietEstatistic = getItemLocal('session_diet').melsMetricas;
-      let porcent = (metricasDietEstatistic.totalDietClean/metricasDietEstatistic.totalMels)*100
-      this.metricasDietEstatisticPocento = porcent.toFixed(2)
-    }
   }
 
 };
