@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(refeicoes, data) in objetosAgrupados[0]" :key="data">
+    <div v-for="(refeicoes, data) in requestDiet.dadosStorage" :key="data">
       <div class="">
         <!--TEM QUE  AJUSTAR PARA PEGAR A DATA ATUAL-->
         <h2 class="data-list-dieta">{{ refeicoes ? $moment(data).format('DD.MM.YYYY') : 'Data não listada' }}</h2>
@@ -24,52 +24,25 @@
   </div>
 </template>
 <script>
-import { getItem as getItemLocal, setItemLocalSession as setItemSession } from '../../util/localStorage';
+import { mapState, mapActions } from 'vuex';
 export default {
   name: 'ListDieta',
   data() {
     return {
-      dietas: [],
-      objetosAgrupados: [],
     }
+  },
+  computed: {
+    ...mapState({
+      requestDiet: 'requestDiet'
+    }),
   },
   mounted() {
-    this.getStorageMels();
+    this.getListTotalDietas()
   },
   methods: {
-    getStorageMels() {
-      let mels = getItemLocal('session_diet').melsTotals;
-
-      // Verifica se mels é um array antes de prosseguir
-      if (Array.isArray(mels.meals)) {
-        this.dietas = mels.meals; // Atribui diretamente se já for um array
-        this.objetosAgrupados.push(this.agruparPorData(this.dietas));
-      } else {
-        console.error('mels não é um array');
-      }
-    },
-
-    agruparPorData(objetos) {
-
-      const grupos = {};
-
-      // Corrige o nome do método para forEach
-      objetos.forEach(obj => {
-        // Extraia a data (sem o tempo) para agrupar por ela
-        const data = obj.created_at.split(' ')[0]; // Isso pega apenas a parte da data da string 'created_at'
-
-        // Se o grupo para essa data ainda não existe, crie-o
-        if (!grupos[data]) {
-          // grupos['data'] = data
-          grupos[data] = []
-        }
-
-        // Adicione o objeto ao grupo correspondente
-        grupos[data].push(obj);
-      });
-
-      return grupos;
-    }
+    ...mapActions({
+      getListTotalDietas: 'requestDiet/getListTotalDietas',
+    }),
   }
 }
 </script>

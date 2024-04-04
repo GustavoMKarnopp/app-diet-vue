@@ -20,7 +20,7 @@ const state = {
       totalMels : '0',
       porcentagemMetricas : '0'
   },
-  storageUpdate: false
+  dadosStorage: ''
 };
 
 const mutations = {
@@ -34,7 +34,7 @@ const mutations = {
       let porcent = (metrics.totalDietClean/metrics.totalMels)*100
       metricasDietEstatisticPocento = porcent.toFixed(2)
     }else{
-      metricasDietEstatisticPocento = 0
+      metricasDietEstatisticPocento = '50'
     }
 
     state.metricasDietas.dietClean = metrics.dietClean;
@@ -44,11 +44,36 @@ const mutations = {
     state.metricasDietas.porcentagemMetricas = metricasDietEstatisticPocento;
   },
 
-  ATUALIZA_STORERAGE(state, payload){
-    if (payload == true) {
-      state.storageUpdate = !state.storageUpdate;
+  ATUALIZA_STORERAGE(state){
+    let melsTotals = getItemLocal('session_diet').melsTotals;
+
+    // Verifica se mels é um array antes de prosseguir
+    if (Array.isArray(melsTotals.meals)) {
+
+      let dietas = melsTotals.meals; // Atribui diretamente se já for um array
+
+      const grupos = {};
+
+      // Corrige o nome do método para forEach
+      dietas.forEach(obj => {
+        // Extraia a data (sem o tempo) para agrupar por ela
+        const data = obj.created_at.split(' ')[0]; // Isso pega apenas a parte da data da string 'created_at'
+
+        // Se o grupo para essa data ainda não existe, crie-o
+        if (!grupos[data]) {
+          // grupos['data'] = data
+          grupos[data] = []
+        }
+
+        // Adicione o objeto ao grupo correspondente
+        grupos[data].push(obj);
+      });
+
+      state.dadosStorage = grupos;
+
+      
     } else {
-      state.storageUpdate = payload;
+      console.error('mels não é um array');
     }
   }
 };
@@ -57,6 +82,7 @@ const actions = {
 
   //TODO Pega metricas de dieta
   async getMetriacas({
+    dispatch,
     commit
   }) {
     try {
@@ -76,6 +102,7 @@ const actions = {
         });
         //Seta o user no localstorage
         setItemSessionLocal('session_diet', { melsMetricas: response.data })
+        // dispatch('getListTotalDietas')
         commit('METRICAS_DIETA', true)
 
       }
@@ -119,7 +146,6 @@ const actions = {
           $router.push({
             name: 'Feedback'
           })
-          // dispatch('getListTotalDietas')
         }
 
       }
