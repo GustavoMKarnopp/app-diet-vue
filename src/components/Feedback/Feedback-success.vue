@@ -16,12 +16,28 @@
       <img src="../../assets/img-feedback/triste.png" alt="">
     </div> -->
     <div>
-      <button class="button-feedback">
+      <button @click="redirectHome()" class="button-feedback">
         Ir para a página inicial
       </button>
     </div>
   </div>
 </template>
+<script>
+import {  mapActions } from 'vuex';
+export  default {
+  name: 'FeedBack',
+  methods: {
+    ...mapActions({
+      getListTotalDietas: 'requestDiet/getListTotalDietas',
+    }),
+
+    redirectHome(){
+      this.getListTotalDietas()
+      this.$router.push({ name: 'Home' })
+    }
+  }
+}
+</script>
 <style>
 .img-feedback{
   display: flex;

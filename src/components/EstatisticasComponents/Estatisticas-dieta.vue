@@ -1,8 +1,10 @@
 <template>
   <div class="estatisticas-layout">
     <div class="indice-dietas">
-      <div class="indice-icon">
-        <span class="mdi mdi-arrow-left"></span>
+      <div class="indice-icon" v-if="$route.name == 'Estatisticas'">
+        <a @click="$router.go(-1)">
+          <span class="mdi mdi-arrow-left"></span>
+        </a>
       </div>
       <div>
         <h1>{{ metricasDietEstatisticPocento }}%</h1>
@@ -13,23 +15,32 @@
   </div>
 </template>
 <script>
-import {
-  getItem as getItemLocal
-} from '../../util/localStorage';
+import { getItem as getItemLocal } from '../../util/localStorage';
+import { mapState } from 'vuex';
 export default{
   name: 'IndiceMetrics',
   data(){
     return{
       metricasDietEstatisticPocento : '00',
+      totalMelsWatch: getItemLocal('session_diet').melsMetricas
     }
   },
   mounted(){
     this.getMetrixEstatistic()
+    console.log(this.totalMelsWatch,'totoal')
+  },
+  watch:{
+    
+  },
+  computed: {
+    ...mapState({
+        requestDiet: 'requestDiet',
+    }),
   },
   methods:{
     getMetrixEstatistic(){
-      let metricasDietEstatistic = getItemLocal('session_diet').melsMetricas;
-      let porcent = (metricasDietEstatistic.totalDietClean/metricasDietEstatistic.totalMels)*100
+      // let metricasDietEstatistic = getItemLocal('session_diet').melsMetricas;
+      let porcent = (this.totalMelsWatch.totalDietClean/this.totalMelsWatch.totalMels)*100
       this.metricasDietEstatisticPocento = porcent.toFixed(2)
     }
   }

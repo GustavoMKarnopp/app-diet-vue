@@ -12,13 +12,22 @@ import $router from "@/router";
 const API_URL = process.env.VUE_APP_DEV
 let sessionId = getCookieLocal('sessionId')
 const state = {
-  metricasDietas: []
+  metricasDietas: [],
+  storageUpdate: false
 };
 
 const mutations = {
   METRICAS_DIETA(state, payload) {
     state.metricasDietas.push(payload);
   },
+
+  ATUALIZA_STORERAGE(state, payload){
+    if (payload == true) {
+      state.storageUpdate = !state.storageUpdate;
+    } else {
+      state.storageUpdate = payload;
+    }
+  }
 };
 
 const actions = {
@@ -88,9 +97,9 @@ const actions = {
         });
         if (response) {
           $router.push({
-            name: 'Home'
+            name: 'Feedback'
           })
-          return dispatch('getListTotalDietas')
+          // dispatch('getListTotalDietas')
         }
 
       }
@@ -129,16 +138,15 @@ const actions = {
 
       } else {
         const response = await axios.get(`${API_URL}/mels`, {
-          withCredentials: true, // Isso garante que os cookies sejam enviados com a requisição
+          withCredentials: true,
           headers: {
             'Authorization': `Bearer ${sessionId}`
           }
         });
-
-        // commit('METRICAS_DIETA', response)
-        setItemSession('session_diet', {
-          melsTotals: response.data
-        })
+        if(response && response.data && response.data.length > 0){
+          setItemSession('session_diet', { melsTotals: response.data })
+          commit('ATUALIZA_STORERAGE', true)
+        }
 
       }
     } catch (error) {

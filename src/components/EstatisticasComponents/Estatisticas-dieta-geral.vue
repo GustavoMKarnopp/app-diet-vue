@@ -6,12 +6,11 @@
     <MelhorFrequencia :freqClea="dadosMetricas.dietClean"></MelhorFrequencia>
     <RefeicoesRegistradas :refeicoesRegist="dadosMetricas.totalMels"></RefeicoesRegistradas>
     <RefeicoesBalanco :refeicoesDentro="dadosMetricas.totalDietClean" :refeicoesFora="dadosMetricas.totalDietDirty"></RefeicoesBalanco>
+
   </div>
 </template>
 <script>
-import {
-  getItem as getItemLocal
-} from '../../util/localStorage';
+import { getItem as getItemLocal } from '../../util/localStorage';
 export default{
   name: 'IndiceMetrics',
   data(){
