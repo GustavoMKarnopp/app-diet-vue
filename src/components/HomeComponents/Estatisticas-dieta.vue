@@ -2,9 +2,12 @@
   <div class="estatisticas-layout">
     <div class="metricas-dietas">
       <div></div>
-      <div>
+      <div v-if="requestDiet">
         <h1>{{requestDiet.metricasDietas.porcentagemMetricas}}%</h1>
         <span>das refeições dentro da dieta.</span>
+      </div>
+      <div v-else>
+        <span>Cadastre Refeições!</span>
       </div>
       <div class="metricas-icon">
         <a @click="$router.push({ name: 'Estatisticas'})">

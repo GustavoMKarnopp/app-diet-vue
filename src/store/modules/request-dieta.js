@@ -14,22 +14,28 @@ const API_URL = process.env.VUE_APP_DEV
 let sessionId = getCookieLocal('sessionId')
 const state = {
   metricasDietas: {
-      dietClean : '',
-      totalDietClean : '',
-      totalDietDirty : '',
-      totalMels : '',
-      porcentagemMetricas : ''
+      dietClean : '0',
+      totalDietClean : '0',
+      totalDietDirty : '0',
+      totalMels : '0',
+      porcentagemMetricas : '0'
   },
   storageUpdate: false
 };
 
 const mutations = {
-  METRICAS_DIETA(state, payload) {
+
+  METRICAS_DIETA(state) {
     let metricasDietEstatisticPocento
     let metrics = getItemLocal('session_diet').melsMetricas
 
-    let porcent = (metrics.totalDietClean/metrics.totalMels)*100
-    metricasDietEstatisticPocento = porcent.toFixed(2)
+    //Valida se existe metricas
+    if(metrics.totalMels !== 0){
+      let porcent = (metrics.totalDietClean/metrics.totalMels)*100
+      metricasDietEstatisticPocento = porcent.toFixed(2)
+    }else{
+      metricasDietEstatisticPocento = 0
+    }
 
     state.metricasDietas.dietClean = metrics.dietClean;
     state.metricasDietas.totalDietClean = metrics.totalDietClean;
