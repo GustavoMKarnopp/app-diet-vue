@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {getCookie as getCookieLocal, deleteCookie as deleteCookiesLocal} from '../../util/cookies';
-import moment from 'moment'
-import {setItem as setItemLocal, getItem as getItemLocal, setItemLocalSession as setItemSessionLocal} from '../../util/localStorage';
+import {getItem as getItemLocal, setItemLocalSession as setItemSessionLocal, removeItem as removeItemLocal} from '../../util/localStorage';
 import $router from "@/router";
 
 const API_URL = process.env.VUE_APP_DEV
@@ -165,6 +164,39 @@ const actions = {
         }else{
           commit('SET_PARAMS_DATA', true)
         }
+      }
+    } catch (error) {
+      if (error.response) {
+        if (sessionId != null && error.response.status == 401) {
+          deleteCookiesLocal('sessionId')
+          commit('USER_EXIST', true)
+        }
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log('Error', error.message);
+      }
+    }
+  },
+
+  async updateDieta({commit}, dados) {
+    try {
+
+      // return console.log(dados)
+      if (sessionId === null) {
+        commit('USER_EXIST', true)
+
+      } else {
+        // if(melsTotals && melsTotals.data && melsTotals.data.id){
+          const response = await axios.put(`${API_URL}/mels/${dados.id}`, dados.date, {
+            withCredentials: true
+          });
+          console.log(response)
+          if (response.status == 201) {
+            removeItemLocal('session_diet');
+            $router.push({ name: 'Home' })
+          }
+        // }
       }
     } catch (error) {
       if (error.response) {

@@ -28,13 +28,13 @@
           </div>
           <div class="resp-question">
             <div class="btn-sim">
-              <button @click="formCadDiet.isOnDiet = true" class="button-registro-dieta">
+              <button @click="formCadDiet.isOnDiet = true" :class="{ 'btn-sim-ativo': formCadDiet.isOnDiet }" class="button-registro-dieta">
                 <div class="bola-bolean-greeam"></div>
                 <span>Sim</span>
               </button>
             </div>
             <div class="btn-nao">
-              <button @click="!formCadDiet.isOnDiet" class="button-registro-dieta">
+              <button @click="formCadDiet.isOnDiet = false" :class="{ 'btn-nao-ativo': !formCadDiet.isOnDiet }" class="button-registro-dieta">
                 <div class="bola-bolean-red"></div>
                 <span>Não</span>
               </button>
@@ -44,42 +44,68 @@
       </div>
       <div class="btn-cad">
         <button @click="cadastarDiet(formCadDiet)" class="cadastrar-refeicao">
-          Cadastrar refeição
+          {{ $route.name === 'Editar' ? 'Alterar Refeição' : 'Cadastrar refeição' }}
         </button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import {getItem as getItemLocal, removeItem as removeItemLocal} from '../../util/localStorage';
 import {  mapActions } from 'vuex';
 export default{
   name: 'Registro-inputs',
   data(){
     return{
-      data:'',
-      hours:'',
-      formCadDiet:{
-        title:'',
-        description:'',
-        isOnDiet: false,
-        date:''
+      id : this.$route.params.id,
+      data : '',
+      hours : '',
+      formCadDiet : {
+        title : '',
+        description : '',
+        isOnDiet : false,
+        date : ''
       }
     }
   },
-
+  mounted(){
+    if(this.$route.name == 'Editar'){
+      this.setUpdateDados()
+    }
+  },
   methods: {
     ...mapActions({
       cadastrarDieta: 'requestDiet/cadastrarDieta',
+      updateDieta: 'requestDiet/updateDieta',
     }),
     cadastarDiet(cadastarDiet){
-
       let data_hours = new Date(this.data + 'T' + this.hours);
       this.formCadDiet.date = data_hours.toISOString();
+      if(this.$route.name == 'Editar'){
+        this.updateDieta({ id: this.id, date: {
+          title: this.formCadDiet.title,
+          description: this.formCadDiet.description,
+          isOnDiet: this.formCadDiet.isOnDiet,
+        }})
+      }else{
+        this.cadastrarDieta(this.formCadDiet)
+      }
+    },
+    setUpdateDados(){
 
-      this.cadastrarDieta(this.formCadDiet)
+      let melsTotals = getItemLocal('session_diet').melsDetalhes;
 
-      console.log(cadastarDiet,'cadastro')
-    }  
+      if(melsTotals.data.id === this.id){
+        this.formCadDiet.title = melsTotals.data.title;
+        this.formCadDiet.description = melsTotals.data.description;
+        let date = new Date(melsTotals.data.date)
+        let ajusteD = date.toISOString();
+        this.data= ajusteD.split('T')[0];
+        let time = ajusteD.split('T')[1].split('.')[0]
+        this.hours= time.slice(0, 5);
+        this.formCadDiet.isOnDiet = melsTotals.data.is_on_diet == 0 ? false : true;
+      }
+    }
   },
 }
 </script>
@@ -286,5 +312,16 @@ input[type="submit"] {
 
 .cadastrar-refeicao:hover {
   background-color: #333638; /* Cor de fundo ao passar o mouse */
+}
+
+.btn-sim-ativo {
+  border: 1px solid #639339;
+  background-color: #E5F0DB; /* Um verde mais forte */
+}
+
+/* Estilo para quando isOnDiet é false */
+.btn-nao-ativo {
+  border: 1px solid #BF3B44;
+  background-color: #F4E6E7; /* Um vermelho mais forte */
 }
 </style>

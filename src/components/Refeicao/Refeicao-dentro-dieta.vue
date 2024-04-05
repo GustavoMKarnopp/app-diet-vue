@@ -3,7 +3,9 @@
   <div :class="['Registro'].includes(this.$route.name) ? 'colorEstatisticasRegister' : ''">
     <div class="indice-icon-registro">
       <div class="arrow-registro">
-        <span class="mdi mdi-arrow-left"></span>
+        <a @click="$router.go(-1)">
+          <span class="mdi mdi-arrow-left"></span>
+        </a>
       </div>
       <div>
         <h3>Nova refeição</h3>

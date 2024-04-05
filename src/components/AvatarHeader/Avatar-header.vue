@@ -1,41 +1,17 @@
 <!-- eslint-disable max-len -->
 <template>
   <div class="name">
-    <img src="../../assets/logo-dietrocketvue.png" alt="Diet Rocket Vue" width="150" class="logoImage">
+    <img src="../../assets/logo.png" alt="Diet Rocket Vue" width="70" class="logoImage">
+    <div></div>
     <div class="divIcon">
-      <h3 class="h3-nome">{{nameComplete}}</h3>
       <div class="indice-icon-use">
-        <span class="mdi mdi-account "></span>
+        <img src="../../assets/foto02.png" alt="Diet Rocket Vue" width="50" class="logoImage">
       </div>
     </div>
   </div>
 </template>
-<script>
-import {
-  getItem as getItemLocal,
-} from '../../util/localStorage';
-export default{
-  name: 'Header',
-  data(){
-    return{
-      nameComplete: '',
-    }
-  },
-  mounted(){
-    this.montaName()
-  },
-  methods:{
-    montaName(){
-      let dataStorage = getItemLocal('dataUser').user[0];
-      this.nameComplete = dataStorage.first_name.toUpperCase()  + ' ' + dataStorage.last_name.toUpperCase();
-    }
-  }
-}
-</script>
 <style>
-.logoImage{
-  border-radius: 50%;
-}
+
 .name{
   display: flex;
   align-items: center;
@@ -52,10 +28,12 @@ export default{
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  color: #639339;
+  border: 2px solid black;
+  border-radius: 100%;
 }
 .h3-nome{
-  margin: 0px 10px;
-  color: #639339;
+  font-size: 15px;
+  margin: 0px 5px;
+  color: #000000;
 }
 </style>

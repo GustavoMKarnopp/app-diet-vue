@@ -2,7 +2,7 @@
 <template>
   <div class="refeicoes-layout">
     <div class="title-ref">
-      <span>Refeições</span>
+      <strong>Refeições</strong>
     </div>
     <div>
       <button @click="navigateRegistroRefeicao()" class="button-nova-refeicao">

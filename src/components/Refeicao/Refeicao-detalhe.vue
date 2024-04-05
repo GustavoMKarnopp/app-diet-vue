@@ -2,7 +2,7 @@
   <div class="refeicao-geral">
     <div v-for="(value, key, index) in requestDiet_userParamsData" :key="index">
       <div class="dado-alimento">
-        <h3>Sanduíche</h3>
+        <h3>{{value.title}}</h3>
         <div style="text-align: start;">
           <span>{{value.description}}</span>
         </div>
@@ -23,7 +23,7 @@
 
       <div class="btns-dix">
         <div class="btn-cad">
-          <button class="cadastrar-ref">
+          <button @click="redirectUpdated()" class="cadastrar-ref">
             Editar Refeição
           </button>
         </div>
@@ -57,6 +57,11 @@ export default {
       modalGlobalExclusao: 'modalGlobal/modalGlobalExclusao',
       deletarDieta: 'requestDiet/deletarDieta',
     }),
+    redirectUpdated(){
+      const id = this.$route.params.id;
+      console.log(id)
+      this.$router.push({name: 'Editar', path: id});
+    },
     modalGlobalExclusaoF() {
       this.modalGlobalExclusao(true);
       return 
