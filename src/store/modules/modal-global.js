@@ -48,7 +48,7 @@ const actions = {
           console.log(response)
           if (response.status == 201) {
             removeItemLocal('session_diet');
-            $router.push({ name: '/' })
+            $router.push({ name: 'Home' })
           }
         }
       }

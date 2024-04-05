@@ -5,7 +5,7 @@
         <!--TEM QUE  AJUSTAR PARA PEGAR A DATA ATUAL-->
         <h2 class="data-list-dieta">{{ refeicoes ? $moment(data).format('DD.MM.YYYY') : 'Data não listada' }}</h2>
       </div>
-      <div v-for="refeicao in refeicoes" :key="refeicao">
+      <div v-for="(refeicao, index) in refeicoes" :key="index">
         <a @click="pegaId(refeicao)">
           <div class="background-list">
             <div style="width: 100%;">

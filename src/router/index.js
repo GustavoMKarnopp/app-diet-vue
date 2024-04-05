@@ -95,6 +95,24 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/edita-refeicao/:id',
+    component: Layout,
+    props: {
+      color: 'transparent',
+      absolute: true,
+    },
+    children: [
+      {
+        name: 'Editar',
+        path: '',
+        component: () => import('../views/Registro-dieta.vue'),
+        meta: {
+          requiresAuth: false, // Esta nao rota requer autenticação
+        },
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({

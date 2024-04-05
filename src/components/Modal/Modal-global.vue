@@ -11,7 +11,7 @@
               Cancelar
             </button>
 
-            <button @click="deletarDieta()" class="excluir-mod">
+            <button @click="excluirList()" class="excluir-mod">
               Sim, excluir
             </button>
           </div>
@@ -31,7 +31,12 @@ export default {
   methods: {
     ...mapActions({
       deletarDieta: 'modalGlobal/deletarDieta',
+      modalGlobalExclusao: 'modalGlobal/modalGlobalExclusao',
     }),
+    excluirList(){
+      this.deletarDieta()
+      this.modalGlobalExclusao(false)
+    }
   },
 };
 </script>

@@ -25,7 +25,7 @@ const mutations = {
       let porcent = (metrics.totalDietClean/metrics.totalMels)*100
       metricasDietEstatisticPocento = porcent.toFixed(2)
     }else{
-      metricasDietEstatisticPocento = '50'
+      metricasDietEstatisticPocento = '0'
     }
     state.metricasDietas.dietClean = metrics.dietClean;
     state.metricasDietas.totalDietClean = metrics.totalDietClean;
@@ -72,6 +72,7 @@ const actions = {
             'Authorization': `Bearer ${sessionId}`
           }
         });
+        console.log(response.data,'response.data')
         setItemSessionLocal('session_diet', { melsMetricas: response.data })
         commit('METRICAS_DIETA', true)
 
