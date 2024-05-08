@@ -1,20 +1,19 @@
-<!-- eslint-disable max-len -->
 <template>
   <div style="justify-content:center; display:flex; align-items:center; flex-direction: column; height: 100vh;">
-    <div>
+    <div v-if="requestDiet.setFeedbackDiet">
       <h2 style="color:#639339; margin-bottom:0px">Continue assim!</h2>
       <span>Você continua <b>dentro da dieta</b>. Muito bem!</span>
     </div>
-    <!-- <div>
+    <div v-else>
       <h2 style="color:#BF3B44; margin-bottom:0px">Que pena!</h2>
       <span>Você <b>saiu da dieta</b> dessa vez, mas continue se esforçando e não  desista!</span>
-    </div> -->
-    <div class="img-feedback">
+    </div>
+    <div v-if="requestDiet.setFeedbackDiet" class="img-feedback">
       <img width="300" src="../../assets/img-feedback/feliz.png" alt="">
     </div>
-    <!-- <div class="img-feedback">
+    <div v-else class="img-feedback">
       <img src="../../assets/img-feedback/triste.png" alt="">
-    </div> -->
+    </div>
     <div>
       <button @click="redirectHome()" class="button-feedback">
         Ir para a página inicial
@@ -23,9 +22,14 @@
   </div>
 </template>
 <script>
-import {  mapActions } from 'vuex';
+import {  mapActions, mapState } from 'vuex';
 export  default {
   name: 'FeedBack',
+  computed: {
+    ...mapState({
+        requestDiet: 'requestDiet'
+    }),
+  },
   methods: {
     ...mapActions({
       getListTotalDietas: 'requestDiet/getListTotalDietas',

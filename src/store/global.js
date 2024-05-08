@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_DB_BACK_DIET = axios.create({
+  // baseURL: process.env.VUE_APP_PROD,
   baseURL: process.env.VUE_APP_DEV,
   headers: {
     Accept: 'application/json',

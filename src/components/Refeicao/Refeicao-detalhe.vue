@@ -59,7 +59,6 @@ export default {
     }),
     redirectUpdated(){
       const id = this.$route.params.id;
-      console.log(id)
       this.$router.push({name: 'Editar', path: id});
     },
     modalGlobalExclusaoF() {

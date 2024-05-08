@@ -78,7 +78,7 @@ export default{
       cadastrarDieta: 'requestDiet/cadastrarDieta',
       updateDieta: 'requestDiet/updateDieta',
     }),
-    cadastarDiet(cadastarDiet){
+    cadastarDiet(){
       let data_hours = new Date(this.data + 'T' + this.hours);
       this.formCadDiet.date = data_hours.toISOString();
       if(this.$route.name == 'Editar'){
@@ -92,9 +92,7 @@ export default{
       }
     },
     setUpdateDados(){
-
       let melsTotals = getItemLocal('session_diet').melsDetalhes;
-
       if(melsTotals.data.id === this.id){
         this.formCadDiet.title = melsTotals.data.title;
         this.formCadDiet.description = melsTotals.data.description;

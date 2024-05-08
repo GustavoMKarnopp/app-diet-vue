@@ -3,6 +3,7 @@ import {getCookie as getCookieLocal, deleteCookie as deleteCookiesLocal} from '.
 import {getItem as getItemLocal, setItemLocalSession as setItemSessionLocal, removeItem as removeItemLocal} from '../../util/localStorage';
 import $router from "@/router";
 
+// const API_URL = process.env.VUE_APP_PROD
 const API_URL = process.env.VUE_APP_DEV
 let sessionId = getCookieLocal('sessionId')
 const state = {
@@ -14,7 +15,8 @@ const state = {
       porcentagemMetricas : '0'
   },
   dadosStorage: '',
-  userParamsData: ''
+  userParamsData: '',
+  setFeedbackDiet: false,
 };
 const mutations = {
   METRICAS_DIETA(state) {
@@ -54,6 +56,9 @@ const mutations = {
     let melsTotals = getItemLocal('session_diet').melsDetalhes
     state.userParamsData = melsTotals
   },
+  SET_FEEDBACK_DIET(state, payload){
+    state.setFeedbackDiet = payload
+  },
 };
 
 const actions = {
@@ -71,7 +76,6 @@ const actions = {
             'Authorization': `Bearer ${sessionId}`
           }
         });
-        console.log(response.data,'response.data')
         setItemSessionLocal('session_diet', { melsMetricas: response.data })
         commit('METRICAS_DIETA', true)
 
@@ -89,8 +93,7 @@ const actions = {
       }
     }
   },
-  async cadastrarDieta({
-  }, dados) {
+  async cadastrarDieta({commit}, dados) {
     try {
       if (sessionId === null) {
         commit('USER_EXIST', true)
@@ -100,9 +103,8 @@ const actions = {
           withCredentials: true
         });
         if (response) {
-          $router.push({
-            name: 'Feedback'
-          })
+          commit('SET_FEEDBACK_DIET', dados.isOnDiet)
+          $router.push({ name: 'Feedback' })
         }
 
       }
@@ -182,16 +184,12 @@ const actions = {
   async updateDieta({commit}, dados) {
     try {
 
-      // return console.log(dados)
       if (sessionId === null) {
         commit('USER_EXIST', true)
-
       } else {
-        // if(melsTotals && melsTotals.data && melsTotals.data.id){
           const response = await axios.put(`${API_URL}/mels/${dados.id}`, dados.date, {
             withCredentials: true
           });
-          console.log(response)
           if (response.status == 201) {
             removeItemLocal('session_diet');
             $router.push({ name: 'Home' })

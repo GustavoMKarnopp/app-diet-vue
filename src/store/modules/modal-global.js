@@ -4,6 +4,7 @@ import {setItem as setItemLocal, getItem as getItemLocal, setItemLocalSession as
 
 import $router from "@/router";
 
+// const API_URL = process.env.VUE_APP_PROD
 const API_URL = process.env.VUE_APP_DEV
 let sessionId = getCookieLocal('sessionId')
 
@@ -39,13 +40,10 @@ const actions = {
         commit('USER_EXIST', true)
 
       } else {
-        console.log( melsTotals)
-        console.log( )
         if(melsTotals && melsTotals.data && melsTotals.data.id){
           const response = await axios.delete(`${API_URL}/mels/${melsTotals.data.id}`,{
             withCredentials: true
           });
-          console.log(response)
           if (response.status == 201) {
             removeItemLocal('session_diet');
             $router.push({ name: 'Home' })
@@ -71,7 +69,7 @@ const getters = {
 };
 
 export default {
-  namespaced: true, // isso permite que o módulo tenha um namespace próprio
+  namespaced: true,
   state,
   mutations,
   actions,
